@@ -1,1 +1,24 @@
-<div></div>
+<div class="container">
+    <div class="container__selector">
+        <mat-form-field>
+            <mat-select placeholder="Select contoller" [(value)]="selectedId">
+                <mat-option
+                    *ngFor="let gamepad of gamepads"
+                    [value]="gamepad.id"
+                >
+                    {{ gamepad.id }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <div class="container__btns">
+            <span *ngFor="let btn of btns$ | async">
+                {{ btns$.value.indexOf(btn) }} | {{ btn.value.toFixed(2) }}:
+                {{ btn.pressed }}
+            </span>
+            <span *ngFor="let ax of axes$ | async">
+                {{ axes$.value.indexOf(ax) }} | {{ ax.toFixed(2) }}
+            </span>
+        </div>
+    </div>
+</div>
